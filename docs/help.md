@@ -1,0 +1,60 @@
+# 帮助文档
+
+## 常用入口
+
+- [快速开始](/getting-started)
+- [配置说明](/configuration)
+- [部署与发布](/deployment)
+- [JSON-RPC API](/api/json-rpc-api)
+- [钉钉 Webhook 配置指南](/integrations/dingtalk-webhook-guide)
+- [Jina AI 集成指南](/integrations/jina-integration-guide)
+
+## 常见问题
+
+### 启动时报配置错误
+
+1. 确认仓库根目录存在 `.env`。
+2. 对照 `.env.example` 补齐基础配置（尤其是 `SERVER_API_KEY`、公众号与模型配置）。
+3. 如果是数据库相关错误，先将 `ENABLE_DB=false` 试跑，确认核心流程可用后再接入数据库。
+
+### JSON-RPC 请求返回 401
+
+1. 请求头必须是 `Authorization: Bearer <SERVER_API_KEY>`。
+2. 确认 `.env` 中 `SERVER_API_KEY` 与请求值一致。
+
+### JSON-RPC 请求返回 404
+
+1. 路径必须是 `POST /api/workflow`。
+2. 不要遗漏 `/api` 前缀。
+
+### 调用 triggerWorkflow 返回“无效的工作流类型”
+
+当前仅支持：
+
+- `weixin-article-workflow`
+- `weixin-aibench-workflow`
+- `weixin-hellogithub-workflow`
+
+### 定时任务没有执行
+
+1. 程序内置 cron 表达式为每天 `03:00`（时区 `Asia/Shanghai`）。
+2. 每天执行的工作流由 `1_of_week_workflow` 到 `7_of_week_workflow` 控制。
+3. 确认进程常驻（例如使用 `pm2` 托管）。
+
+### 抓取结果质量不稳定
+
+1. 给 `JINA_API_KEY` 与 `FIRE_CRAWL_API_KEY` 配置可用 key。
+2. 调整数据源质量，避免低质量站点。
+3. 根据场景调优 `AI_CONTENT_RANKER_LLM_PROVIDER` 与 `AI_SUMMARIZER_LLM_PROVIDER`。
+
+### 微信发布失败
+
+1. 检查 `WEIXIN_APP_ID` 与 `WEIXIN_APP_SECRET`。
+2. 检查公众号后台 IP 白名单。
+3. 检查模板中是否有超长内容或不合法 HTML。
+
+## 排查建议
+
+- 先手动触发 API，确认单次工作流可跑通。
+- 再启用 cron 与通知，观察完整链路。
+- 每次只改一组配置，便于定位问题。

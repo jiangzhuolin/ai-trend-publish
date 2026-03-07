@@ -77,6 +77,19 @@ deno task build:linux-arm64 # ARM架构
 deno task build:all
 ```
 
+### 5. 文档开发（VitePress）
+
+```bash
+# 安装文档依赖
+npm install
+
+# 本地预览文档
+npm run docs:dev
+
+# 构建文档
+npm run docs:build
+```
+
 ## 🌟 主要功能
 
 - 🤖 多源数据采集
@@ -109,7 +122,7 @@ deno task build:all
 ## 📝 文章模板
 
 TrendPublish 提供了多种精美的文章模板。查看
-[模板展示页面](https://openaispace.github.io/ai-trend-publish/templates.html)
+[模板展示页面](https://openaispace.github.io/ai-trend-publish/templates)
 了解更多详情。
 
 ## DONE
@@ -143,11 +156,11 @@ TrendPublish 提供了多种精美的文章模板。查看
 ## 🛠 技术栈
 
 - **运行环境**: Deno + TypeScript
-- **AI 服务**: DeepseekAI Together 千问 万象 讯飞 Jina AI (see [Integration Guide](docs/jina_integration_guide.md))
+- **AI 服务**: DeepseekAI Together 千问 万象 讯飞 Jina AI (see [Integration Guide](docs/integrations/jina-integration-guide.md))
 - **数据源**:
   - Twitter/X API
   - FireCrawl
-  - Jina AI (for scraping and search, see [Integration Guide](docs/jina_integration_guide.md))
+  - Jina AI (for scraping and search, see [Integration Guide](docs/integrations/jina-integration-guide.md))
 - **模板引擎**: EJS
 - **开发工具**:
   - Deno
@@ -176,14 +189,14 @@ cp .env.example .env
 # Key environment variables include API keys for various AI services.
 # For Jina AI functionalities (scraping, search, embeddings, reranking),
 # ensure JINA_API_KEY is set. See the .env.example file and the
-# Jina Integration Guide (docs/jina_integration_guide.md) for more details.
+# Jina Integration Guide (docs/integrations/jina-integration-guide.md) for more details.
 ```
 
 ## ⚙️ 环境变量配置
 
 在 `.env` 文件中配置必要的环境变量：
 
-(Refer to `.env.example` for a comprehensive list of environment variables. For details on Jina AI specific setup, see the [Jina Integration Guide](docs/jina_integration_guide.md)).
+(Refer to `.env.example` for a comprehensive list of environment variables. For details on Jina AI specific setup, see the [Jina Integration Guide](docs/integrations/jina-integration-guide.md)).
 
 ## ⚠️ 配置IP白名单
 
@@ -361,6 +374,6 @@ npx ts-node -r tsconfig-paths/register src\modules\render\test\test.weixin.templ
 
 - 端点: `/api/workflow`
 - 支持方法: `triggerWorkflow`
-- 详细文档: [JSON-RPC API 文档](https://openaispace.github.io/ai-trend-publish/json-rpc-api.html )
+- 详细文档: [JSON-RPC API 文档](https://openaispace.github.io/ai-trend-publish/api/json-rpc-api)
 
 ![](https://oss.liuyaowen.cn/image/202504242031044.png)

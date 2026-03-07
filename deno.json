@@ -9,7 +9,8 @@
     "build:linux-x64": "deno compile -A --target x86_64-unknown-linux-gnu --output trendFinder-linux-x64 --include src/modules/render/templates src/test.ts ",
     "build:linux-arm64": "deno compile -A --target aarch64-unknown-linux-gnu --output trendFinder-linux-arm64 --include src/modules/render/templates src/test.ts ",
     "build:all": "deno task build:win && deno task build:mac-x64 && deno task build:mac-arm64 && deno task build:linux-x64 && deno task build:linux-arm64",
-    "build:docs": "deno run --allow-all scripts/md2html.ts"
+    "build:docs": "npm run docs:build",
+    "dev:docs": "npm run docs:dev"
   },
   "imports": {
     "@deno-library/progress": "jsr:@deno-library/progress@^1.5.1",
