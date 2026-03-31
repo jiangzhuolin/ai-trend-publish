@@ -3,6 +3,8 @@
 基于 Deno
 开发的趋势发现和内容发布系统，支持多源数据采集、智能总结和自动发布到微信公众号。
 
+![star](https://atomgit.com/qq_35779032/ai-trend-publish/star/badge.svg)
+
 > 🌰 示例公众号：**AISPACE科技空间**
 
 点击加入discard频道：https://discord.gg/mrZvBHNawS
