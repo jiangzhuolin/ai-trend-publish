@@ -433,6 +433,7 @@ export class WeixinArticleWorkflow
         timeout: "5 minutes",
       }, async () => {
         logger.info("[发布] 发布到微信公众号");
+	    logger.info(renderedTemplate);
         return await this.publisher.publish(
           renderedTemplate,
           summaryTitle,
