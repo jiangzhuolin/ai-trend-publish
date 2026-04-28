@@ -10,6 +10,7 @@ COPY package*.json ./
 # 复制所有源代码（包括 .env 文件）
 COPY . .
 
+EXPOSE 8000
 
 # 启动应用
 CMD ["deno", "task", "start"] 
