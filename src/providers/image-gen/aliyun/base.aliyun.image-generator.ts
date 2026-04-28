@@ -110,6 +110,7 @@ export abstract class BaseAliyunImageGenerator extends BaseImageGenerator {
           },
         },
       );
+      logger.debug("check task status output", response.data);
       return response.data.output;
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
@@ -131,7 +132,7 @@ export abstract class BaseAliyunImageGenerator extends BaseImageGenerator {
   protected async waitForCompletion(
     taskId: string,
     maxAttempts: number = 30,
-    interval: number = 2000,
+    interval: number = 5000,
   ): Promise<string> {
     let attempts = 0;
 
