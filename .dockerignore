@@ -1,0 +1,36 @@
+# Docker ignore file
+# Common directories and files that should not be copied into the image
+
+# Node.js / npm dependencies (unused in Deno but may exist if legacy)
+node_modules
+
+# Deno cache
+.Deno
+
+# IDE and editor metadata
+.idea
+.vscode
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+
+# Certificates or private keys
+*.pem
+*.key
+
+# Lock files (already copied explicitly in Dockerfile)
+package-lock.json
+npm-debug.log
+
+# Build artifacts (if any)
+dist
+coverage
