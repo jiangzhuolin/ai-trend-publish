@@ -30,7 +30,8 @@ import { EmbeddingProvider } from "@src/providers/interfaces/embedding.interface
 import { EmbeddingFactory } from "@src/providers/embedding/embedding-factory.ts";
 import { EmbeddingProviderType } from "@src/providers/interfaces/embedding.interface.ts";
 import { VectorSimilarityUtil } from "@src/utils/VectorSimilarityUtil.ts";
-const logger = new Logger("weixin-article-workflow");
+
+const logger = new Logger("WeixinArticleWorkflow");
 
 interface WeixinWorkflowEnv {
   name: string;
@@ -382,10 +383,10 @@ export class WeixinArticleWorkflow
           const templateData: WeixinTemplate[] = processedContents.map(
             (content) => ({
               id: content.id,
-              title: content.title,
-              content: content.content,
-              url: content.url,
-              publishDate: content.publishDate,
+              title: content.title.trim(),
+              content: content.content.trim(),
+              url: content.url.trim(),
+              publishDate: content.publishDate.trim(),
               metadata: content.metadata,
               keywords: content.metadata.keywords,
               media: content.media,
