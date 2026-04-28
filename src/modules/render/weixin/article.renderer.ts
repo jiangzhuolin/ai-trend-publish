@@ -3,6 +3,9 @@ import ejs from "npm:ejs";
 import { WeixinImageProcessor } from "@src/utils/image/image-processor.ts";
 import { WeixinPublisher } from "@src/modules/publishers/weixin.publisher.ts";
 import { BaseTemplateRenderer } from "@src/modules/render/weixin/base.renderer.ts";
+import { Logger } from "@zilla/logger";
+
+const logger = new Logger("WeixinArticleTemplateRenderer");
 
 /**
  * 文章模板渲染器
@@ -58,6 +61,9 @@ export class WeixinArticleTemplateRenderer
       }
     });
 
+    logger.debug("原始文章内容", article.content)
+    logger.debug("处理后的文章内容", processedContent)
+
     return {
       ...article,
       content: processedContent,
@@ -93,7 +99,7 @@ export class WeixinArticleTemplateRenderer
   ): Promise<string> {
     const imageProcessor = new WeixinImageProcessor(new WeixinPublisher());
     // 预处理每篇文章 插入图片到段落之间
-    console.log(
+    logger.debug(
       `WeixinArticleTemplateRenderer doRender: ${data.length} articles`,
     );
     const processedData = data.map((article) =>
@@ -106,7 +112,7 @@ export class WeixinArticleTemplateRenderer
         article.content,
       );
       article.content = content;
-      console.log(results);
+      logger.debug(results.toString());
     }
 
     return ejs.render(
