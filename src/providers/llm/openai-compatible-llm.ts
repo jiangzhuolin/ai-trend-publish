@@ -5,6 +5,9 @@ import {
   ChatMessage,
   LLMProvider,
 } from "@src/providers/interfaces/llm.interface.ts";
+import { Logger } from "@zilla/logger";
+
+const logger = new Logger("OpenAICompatibleLLM");
 
 export class OpenAICompatibleLLM implements LLMProvider {
   private baseURL!: string;
@@ -93,6 +96,17 @@ export class OpenAICompatibleLLM implements LLMProvider {
     options: ChatCompletionOptions = {},
   ): Promise<any> {
     try {
+      logger.debug(`${this.baseURL}, ${this.token}, ${this.defaultModel}, ${options.model}`)
+      const request_body = {
+        model: options.model || this.defaultModel,
+        messages,
+        temperature: options.temperature ?? 0.7,
+        top_p: options.top_p ?? 1,
+        max_tokens: options.max_tokens ?? 2000,
+        stream: options.stream ?? false,
+        response_format: options.response_format,
+      }
+      logger.debug("请求 body:", request_body);
       // 使用HttpClient进行请求，自动处理重试和超时
       return await this.httpClient.request(`${this.baseURL}/chat/completions`, {
         method: "POST",
@@ -100,15 +114,7 @@ export class OpenAICompatibleLLM implements LLMProvider {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${this.token}`,
         },
-        body: JSON.stringify({
-          model: options.model || this.defaultModel,
-          messages,
-          temperature: options.temperature ?? 0.7,
-          top_p: options.top_p ?? 1,
-          max_tokens: options.max_tokens ?? 2000,
-          stream: options.stream ?? false,
-          response_format: options.response_format,
-        }),
+        body: JSON.stringify(request_body),
         timeout: 60000, // 60秒超时
         retries: 3, // 最多重试3次
         retryDelay: 1000, // 重试间隔1秒
