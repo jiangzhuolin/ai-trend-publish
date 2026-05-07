@@ -114,9 +114,11 @@ export class AISummarizer implements ContentSummarizer {
         },
       ], {
         temperature: 0.7,
-        max_tokens: 100,
+        top_p: 1,
+        max_tokens: 10000,
+        stream: false
       });
-
+      logger.debug("title response: ", response);
       const title = response.choices[0]?.message?.content;
       if (!title) {
         throw new Error("未获取到有效的标题");
