@@ -54,8 +54,8 @@ export class FireCrawlScraper implements ContentScraper {
 
       // 构建提取提示词
       const promptForFirecrawl = `
-      Return only today's AI or LLM related story or post headlines and links in JSON format from the page content. 
-      They must be posted today, ${currentDate}. The format should be:
+      Return last 24H's AI or LLM related story or post headlines and links in JSON format from the page content. 
+      They must be posted in the last 24H. The format should be:
         {
           "stories": [
             {
