@@ -401,20 +401,8 @@ export class WeixinArticleWorkflow
             return t.slice(0, 64);
           });
 
-          // 生成封面图片
-          const imageGenerator = await ImageGeneratorFactory.getInstance()
-            .getGenerator(ImageGeneratorType.ALIWANX_POSTER);
-          const imageUrl = await imageGenerator.generate({
-            title: title.split(" | ")[1].trim().slice(0, 30),
-            sub_title: new Date().toLocaleDateString() + " AI速递",
-            prompt_text_zh: `科技前沿资讯 | 人工智能新闻 | 每日AI快报 - ${
-              title.split(" | ")[1].trim().slice(0, 30)
-            }`,
-            generate_mode: "generate",
-            generate_num: 1,
-          });
-
-          // 上传封面图片
+          // 上传本地固定封面图片
+          const imageUrl = "https://jiangzhuolin.com/weixin-gongzonghao-banner.png";
           const media = await this.publisher.uploadImage(imageUrl);
 
           // 渲染模板
