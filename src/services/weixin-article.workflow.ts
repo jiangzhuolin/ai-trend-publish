@@ -157,6 +157,7 @@ export class WeixinArticleWorkflow
             source,
             fireCrawlScraper,
           );
+          logger.debug("FireCrawl source contents: ", sourceContents)
           contents.push(...sourceContents);
           totalArticles += sourceContents.length;
           await scrapeProgress.render(++scrapeCompleted, {
@@ -177,6 +178,7 @@ export class WeixinArticleWorkflow
             source,
             twitterScraper,
           );
+          logger.debug("Twitter source contents: ", sourceContents)
           contents.push(...sourceContents);
           totalArticles += sourceContents.length;
           await scrapeProgress.render(++scrapeCompleted, {
