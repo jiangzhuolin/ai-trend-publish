@@ -42,11 +42,11 @@ export class LLMFactory {
 
   /**
    * 解析LLM提供者配置字符串
-   * @param config 配置字符串，格式为 "PROVIDER" 或 "PROVIDER:model"
+   * @param config 配置字符串，格式为 "PROVIDER" 或 "PROVIDER|model"
    * @returns 解析后的配置对象
    */
   private parseLLMConfig(config: string): ParsedLLMConfig {
-    const parts = config.split(":");
+    const parts = config.split("|");
     const providerType = parts[0] as LLMProviderType;
     const model = parts.length > 1 ? parts[1] : undefined;
 
