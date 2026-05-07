@@ -102,7 +102,7 @@ export class OpenAICompatibleLLM implements LLMProvider {
         messages,
         temperature: options.temperature ?? 0.7,
         top_p: options.top_p ?? 1,
-        max_tokens: options.max_tokens ?? 2000,
+        max_tokens: options.max_tokens ?? 20000,
         stream: options.stream ?? false,
         response_format: options.response_format,
       }
