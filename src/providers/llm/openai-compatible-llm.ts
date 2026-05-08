@@ -115,9 +115,9 @@ export class OpenAICompatibleLLM implements LLMProvider {
           "Authorization": `Bearer ${this.token}`,
         },
         body: JSON.stringify(request_body),
-        timeout: 60000, // 60秒超时
+        timeout: 600000, // 600秒超时
         retries: 3, // 最多重试3次
-        retryDelay: 1000, // 重试间隔1秒
+        retryDelay: 5000, // 重试间隔5秒
       });
     } catch (error) {
       throw new Error(`创建聊天完成失败: ${(error as Error).message}`);
